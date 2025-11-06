@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedConnect Lahore - Healthcare Student Jobs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0077b6;
+            --secondary: #00b4d8;
+            --accent: #2ecc71;
+            --light: #f8f9fa;
+            --dark: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #0066a1;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 119, 182, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 119, 182, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 119, 182, 0.8), rgba(0, 180, 216, 0.8)), url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* How It Works */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(0, 180, 216, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Services */
+        .services {
+            background-color: var(--light);
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Forms Styling */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.1);
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .job-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .security-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #856404;
+            text-align: center;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light);
+        }
+
+        .testimonial-cards {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: thin;
+        }
+
+        .testimonial-card {
+            min-width: 350px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary);
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 70px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo h2 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo p {
+            color: #bbb;
+        }
+
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #bbb;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .step {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <h1>MedConnect <span>Lahore</span></h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#student-registration">For Students</a></li>
+                    <li><a href="#employer-registration">For Employers</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#available-jobs">Jobs</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="#student-registration" class="btn btn-primary">Register Now</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Launch Your Medical Career in Lahore</h1>
+            <p>Find paid internships, part-time jobs, and freelance work tailored for healthcare students. Gain real-world experience, build your resume, and earn.</p>
+            <div class="hero-buttons">
+                <a href="#student-registration" class="btn btn-accent">Find a Job Now</a>
+                <a href="#employer-registration" class="btn btn-secondary">Hire a Student</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get Hired in 3 Easy Steps</h2>
+                <p>Our simple process connects you with the best opportunities in Lahore's healthcare sector</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Create Your Profile</h3>
+                    <p>Sign up and showcase your skills, field of study, and availability to potential employers.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Browse Jobs</h3>
+                    <p>Explore verified job postings from clinics, labs, and medical centers across Lahore.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Apply & Get Hired</h3>
+                    <p>Connect directly with employers and start your professional healthcare journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Your Perfect Role</h2>
+                <p>Explore various healthcare positions tailored for students in Lahore</p>
+            </div>
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Clinical Assistant</h3>
+                    <p>Assist doctors and nurses in clinical settings, gaining hands-on patient care experience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>Pharmacy Assistant</h3>
+                    <p>Work in pharmacies, learning about medication management and customer service.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>Medical Lab Assistant</h3>
+                    <p>Support laboratory operations and learn diagnostic testing procedures.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Physiotherapy Aide</h3>
+                    <p>Assist physiotherapists in patient rehabilitation and therapy sessions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>Dental Assistant</h3>
+                    <p>Support dental procedures and learn about oral healthcare practices.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3>Health Data Entry</h3>
+                    <p>Manage patient records and healthcare data in medical facilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Registration Section -->
+    <section class="section" id="student-registration">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student Registration</h2>
+                <p>Join MedConnect Lahore and start your healthcare career</p>
+            </div>
+            
+            <div class="security-notice">
+                <h4>🔒 Security Notice</h4>
+                <p>When submitting the form, you may see a Google security warning. This is normal - our app needs permission to save your data. Click "Advanced" and then "Go to MedConnect Lahore" to continue.</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="studentForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="field" required>
+                            <option value="">Select Your Field</option>
+                            <option value="mbbs">MBBS</option>
+                            <option value="bds">BDS</option>
+                            <option value="nursing">Nursing</option>
+                            <option value="pharmacy">Pharmacy</option>
+                            <option value="physiotherapy">Physiotherapy</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="institution" placeholder="College/University" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="year" placeholder="Current Year (e.g., 2nd Year)" required>
+                    </div>
+                    <button type="submit" class="btn btn-accent">Register Now</button>
+                </form>
+                <div id="studentMessage"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employer Registration Section -->
+    <section class="section" id="employer-registration">
+        <div class="container">
+            <div class="section-title">
+                <h2>For Employers</h2>
+                <p>Register your healthcare facility and find qualified students</p>
+            </div>
+            <div class="form-container">
+                <form id="employerForm">
+                    <div class="form-group">
+                        <input type="text" id="companyName" placeholder="Company/Clinic/Hospital Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="contactPerson" placeholder="Contact Person Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="employerEmail" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="employerPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="companyType" required>
+                            <option value="">Select Facility Type</option>
+                            <option value="hospital">Hospital</option>
+                            <option value="clinic">Clinic</option>
+                            <option value="lab">Diagnostic Lab</option>
+                            <option value="pharmacy">Pharmacy</option>
+                            <option value="dental">Dental Clinic</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-accent">Register Your Facility</button>
+                </form>
+                <div id="employerMessage"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA for Employers -->
+    <section class="cta">
+        <div class="container">
+            <h2>Are You a Clinic or Lab in Lahore?</h2>
+            <p>Find pre-vetted, passionate, and skilled medical students to support your team. Save on costs and nurture future talent.</p>
+            <a href="#employer-registration" class="btn btn-accent">Post a Job Opportunity</a>
+        </div>
+    </section>
+
+    <!-- Jobs Display Section -->
+    <section class="section" id="available-jobs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Available Jobs</h2>
+                <p>Browse current opportunities for healthcare students in Lahore</p>
+            </div>
+            <div id="jobsContainer">
+                <p>Loading available jobs...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Students Say</h2>
+                <p>Hear from healthcare students who have found great opportunities through MedConnect Lahore</p>
+            </div>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        MedConnect helped me find a part-time job at a local diagnostic lab. The experience is invaluable for my MBBS studies!
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AR</div>
+                        <div>
+                            <h4>Ayesha R.</h4>
+                            <p>Medical Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        I earned my own fees while working as a dental assistant. This platform is a blessing for students in Lahore.
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div>
+                            <h4>Ali K.</h4>
+                            <p>Dentistry Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The flexibility of part-time work allowed me to balance my studies and gain practical experience simultaneously.
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FS</div>
+                        <div>
+                            <h4>Fatima S.</h4>
+                            <p>Nursing Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>MedConnect Lahore</h2>
+                    <p>Empowering Future Healthcare Professionals through meaningful employment opportunities in Lahore.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#student-registration">For Students</a></li>
+                        <li><a href="#employer-registration">For Employers</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#available-jobs">Available Jobs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@medconnectlahore.com</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+92 300 1234567</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lahore, Pakistan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedConnect Lahore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript with Google Apps Script Integration -->
+    <script>
+        // Google Apps Script Configuration - USING YOUR REAL URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbEoaaRTJ42YJiJTlqQnCDEnti92hPDyV6i9TWbGHjZPKwFT3Fu1E9SWHmQ7LKwKFkGQ/exec';
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Student Registration Form
+            const studentForm = document.getElementById('studentForm');
+            if (studentForm) {
+                studentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    registerStudent();
+                });
+            }
+
+            // Employer Registration Form
+            const employerForm = document.getElementById('employerForm');
+            if (employerForm) {
+                employerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    registerEmployer();
+                });
+            }
+
+            // Load Jobs on page load
+            loadJobs();
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Register Student Function
+        async function registerStudent() {
+            const studentData = {
+                action: 'registerStudent',
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                field: document.getElementById('field').value,
+                institution: document.getElementById('institution').value,
+                year: document.getElementById('year').value
+            };
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(studentData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    showMessage('studentMessage', result.message, 'success');
+                    document.getElementById('studentForm').reset();
+                } else {
+                    showMessage('studentMessage', result.message, 'error');
+                }
+            } catch (error) {
+                showMessage('studentMessage', 'Registration failed. Please try again.', 'error');
+            }
+        }
+
+        // Register Employer Function
+        async function registerEmployer() {
+            const employerData = {
+                action: 'registerEmployer',
+                companyName: document.getElementById('companyName').value,
+                contactPerson: document.getElementById('contactPerson').value,
+                email: document.getElementById('employerEmail').value,
+                phone: document.getElementById('employerPhone').value,
+                companyType: document.getElementById('companyType').value
+            };
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(employerData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    showMessage('employerMessage', result.message, 'success');
+                    document.getElementById('employerForm').reset();
+                } else {
+                    showMessage('employerMessage', result.message, 'error');
+                }
+            } catch (error) {
+                showMessage('employerMessage', 'Registration failed. Please try again.', 'error');
+            }
+        }
+
+        // Load Jobs Function
+        async function loadJobs() {
+            try {
+                const response = await fetch(SCRIPT_URL + '?action=getJobs');
+                const result = await response.json();
+                
+                if (result.status === 'success' && result.data) {
+                    displayJobs(result.data);
+                } else {
+                    document.getElementById('jobsContainer').innerHTML = '<p>No jobs available at the moment.</p>';
+                }
+            } catch (error) {
+                document.getElementById('jobsContainer').innerHTML = '<p>Error loading jobs. Please refresh the page.</p>';
+            }
+        }
+
+        // Display Jobs on Website
+        function displayJobs(jobs) {
+            const jobsContainer = document.getElementById('jobsContainer');
+            if (!jobsContainer) return;
+
+            if (jobs.length === 0) {
+                jobsContainer.innerHTML = '<p>No jobs available at the moment. Check back soon!</p>';
+                return;
+            }
+
+            jobsContainer.innerHTML = jobs.map(job => `
+                <div class="job-card">
+                    <h3>${job.title}</h3>
+                    <p><strong>Company:</strong> ${job.company}</p>
+                    <p><strong>Location:</strong> ${job.location}</p>
+                    <p><strong>Salary:</strong> ${job.salary}</p>
+                    <p><strong>Description:</strong> ${job.description}</p>
+                    <p><strong>Requirements:</strong> ${job.requirements}</p>
+                    <p class="job-date">Posted: ${new Date(job.posted).toLocaleDateString()}</p>
+                    <button class="btn btn-primary" onclick="applyForJob('${job.title}', '${job.company}')">Apply Now</button>
+                </div>
+            `).join('');
+        }
+
+        // Show Message Function
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = `<div class="message ${type}">${message}</div>`;
+                setTimeout(() => {
+                    element.innerHTML = '';
+                }, 5000);
+            } else {
+                alert(message);
+            }
+        }
+
+        // Apply for Job Function
+        function applyForJob(jobTitle, company) {
+            alert(`Thank you for your interest in "${jobTitle}" at ${company}! Please complete your student registration to apply.`);
+            document.getElementById('student-registration').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
