@@ -801,45 +801,182 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
+   <script>
+    // ✅ YAHAN PAR YEH LINE ADD KAREN:
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbEoaaRTJ42YJiJTlqQnCDEnti92hPDyV6i9TWbGHjZPKwFT3Fu1E9SWHmQ7LKwKFkGQ/exec';
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Student Registration Form
+        const studentForm = document.getElementById('studentForm');
+        if (studentForm) {
+            studentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                registerStudent();
+            });
+        }
+
+        // Employer Registration Form
+        const employerForm = document.getElementById('employerForm');
+        if (employerForm) {
+            employerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                registerEmployer();
+            });
+        }
+
+        // Load Jobs on page load
+        loadJobs();
+    });
+
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    
+    // Header Scroll Effect
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('header-scrolled');
+        } else {
+            header.classList.remove('header-scrolled');
+        }
+    });
+    
+    // Smooth Scrolling for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
             }
         });
-        
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                }
+    });
+
+    // ✅ YAHAN SE NAYE FUNCTIONS ADD KAREN:
+
+    // Register Student Function
+    async function registerStudent() {
+        const studentData = {
+            action: 'registerStudent',
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            field: document.getElementById('field').value,
+            institution: document.getElementById('institution').value,
+            year: document.getElementById('year').value
+        };
+
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(studentData)
             });
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                alert('Registration successful! We will contact you soon.');
+                document.getElementById('studentForm').reset();
+            } else {
+                alert('Error: ' + result.message);
+            }
+        } catch (error) {
+            alert('Registration failed. Please try again.');
+        }
+    }
+
+    // Register Employer Function
+    async function registerEmployer() {
+        const employerData = {
+            action: 'registerEmployer',
+            companyName: document.getElementById('companyName').value,
+            contactPerson: document.getElementById('contactPerson').value,
+            email: document.getElementById('employerEmail').value,
+            phone: document.getElementById('employerPhone').value,
+            companyType: document.getElementById('companyType').value
+        };
+
+        try {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(employerData)
+            });
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                alert('Registration successful! Our team will contact you within 24 hours.');
+                document.getElementById('employerForm').reset();
+            } else {
+                alert('Error: ' + result.message);
+            }
+        } catch (error) {
+            alert('Registration failed. Please try again.');
+        }
+    }
+
+    // Load Jobs Function
+    async function loadJobs() {
+        try {
+            const response = await fetch(SCRIPT_URL + '?action=getJobs');
+            const result = await response.json();
+            
+            if (result.status === 'success' && result.data) {
+                displayJobs(result.data);
+            }
+        } catch (error) {
+            console.error('Error loading jobs:', error);
+        }
+    }
+
+    // Display Jobs on Website
+    function displayJobs(jobs) {
+        const jobsContainer = document.getElementById('jobsContainer');
+        if (!jobsContainer) return;
+
+        if (jobs.length === 0) {
+            jobsContainer.innerHTML = '<p>No jobs available at the moment. Check back soon!</p>';
+            return;
+        }
+
+        jobsContainer.innerHTML = jobs.map(job => `
+            <div class="job-card">
+                <h3>${job.title}</h3>
+                <p><strong>Company:</strong> ${job.company}</p>
+                <p><strong>Location:</strong> ${job.location}</p>
+                <p><strong>Salary:</strong> ${job.salary}</p>
+                <p><strong>Description:</strong> ${job.description}</p>
+                <p><strong>Requirements:</strong> ${job.requirements}</p>
+                <p class="job-date">Posted: ${new Date(job.posted).toLocaleDateString()}</p>
+                <button class="btn btn-primary" onclick="applyForJob('${job.title}', '${job.company}')">Apply Now</button>
+            </div>
+        `).join('');
+    }
+
+    // Apply for Job Function
+    function applyForJob(jobTitle, company) {
+        alert(`Thank you for your interest in "${jobTitle}" at ${company}! Please complete your student registration to apply.`);
+        document.getElementById('student-registration').scrollIntoView({
+            behavior: 'smooth'
         });
-    </script>
+    }
+</script>
 </body>
+
 </html>
